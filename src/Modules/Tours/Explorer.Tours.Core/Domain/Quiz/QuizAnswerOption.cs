@@ -11,7 +11,7 @@ public class QuizAnswerOption : Entity
 
     public QuizAnswerOption(long questionId, string text, bool isCorrect, string feedback)
     {
-        if (questionId <= 0) throw new ArgumentException("Invalid QuestionId.");
+        if (questionId < 0) throw new ArgumentException("Invalid QuestionId.");
         if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Invalid Text.");
         if (string.IsNullOrWhiteSpace(feedback)) throw new ArgumentException("Invalid Feedback.");
 

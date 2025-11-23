@@ -134,10 +134,10 @@ public class QuizService : IQuizService
     {
         foreach (var question in quizDto.Questions ?? new List<QuizQuestionDto>())
         {
-            if (question.QuizId == 0) question.QuizId = quizDto.Id == 0 ? -1 : quizDto.Id;
+            if (question.QuizId == 0) question.QuizId = quizDto.Id;
             foreach (var option in question.Options ?? new List<QuizAnswerOptionDto>())
             {
-                if (option.QuestionId == 0) option.QuestionId = question.Id == 0 ? -1 : question.Id;
+                if (option.QuestionId == 0) option.QuestionId = question.Id;
             }
         }
     }

@@ -12,7 +12,7 @@ public class QuizQuestion : Entity
 
     public QuizQuestion(long quizId, string text, bool allowsMultipleAnswers, ICollection<QuizAnswerOption> options)
     {
-        if (quizId <= 0) throw new ArgumentException("Invalid QuizId.");
+        if (quizId < 0) throw new ArgumentException("Invalid QuizId.");
         if (string.IsNullOrWhiteSpace(text)) throw new ArgumentException("Invalid Text.");
         ValidateCorrectAnswers(allowsMultipleAnswers, options);
 

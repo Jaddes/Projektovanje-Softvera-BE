@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Explorer.Architecture.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2cacd48e7b768d228b5fcbb7bd9178dc8e837f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f10c3b1b4672afb2407799c2e5d4f007b381bd3d")]
 [assembly: System.Reflection.AssemblyProductAttribute("Explorer.Architecture.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Explorer.Architecture.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
