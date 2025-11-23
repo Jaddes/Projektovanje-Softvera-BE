@@ -5,7 +5,7 @@ namespace Explorer.Tours.Core.Domain.Quiz;
 public class QuizQuestion : Entity
 {
     public long QuizId { get; private set; }
-    public string Text { get; private set; }
+    public string Text { get; private set; } = string.Empty;
     public bool AllowsMultipleAnswers { get; private set; }
     public ICollection<QuizAnswerOption> Options { get; private set; }
 

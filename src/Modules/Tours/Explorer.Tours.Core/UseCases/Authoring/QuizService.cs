@@ -31,7 +31,7 @@ public class QuizService : IQuizService
         quizDto.CreatedAt = DateTime.UtcNow;
         EnsureIdentifiers(quizDto);
 
-        var quiz = _mapper.Map<Quiz>(quizDto);
+        var quiz = _mapper.Map<DomainQuiz>(quizDto);
         var created = _repository.Create(quiz);
         return _mapper.Map<QuizDto>(created);
     }
