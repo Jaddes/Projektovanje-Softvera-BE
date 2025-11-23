@@ -2,8 +2,8 @@ using AutoMapper;
 using Explorer.BuildingBlocks.Core.Exceptions;
 using Explorer.Tours.API.Dtos;
 using Explorer.Tours.API.Public.Authoring;
-using Explorer.Tours.Core.Domain.Quiz;
 using Explorer.Tours.Core.Domain.RepositoryInterfaces;
+using DomainQuiz = Explorer.Tours.Core.Domain.Quiz.Quiz;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -31,7 +31,7 @@ public class QuizService : IQuizService
         quizDto.CreatedAt = DateTime.UtcNow;
         EnsureIdentifiers(quizDto);
 
-        var quiz = _mapper.Map<DomainQuiz>(quizDto);
+        var quiz = _mapper.Map<Quiz>(quizDto);
         var created = _repository.Create(quiz);
         return _mapper.Map<QuizDto>(created);
     }
@@ -47,7 +47,7 @@ public class QuizService : IQuizService
         quizDto.UpdatedAt = DateTime.UtcNow;
         EnsureIdentifiers(quizDto);
 
-        var updated = _mapper.Map<Quiz>(quizDto);
+        var updated = _mapper.Map<DomainQuiz>(quizDto);
         var result = _repository.Update(updated);
         return _mapper.Map<QuizDto>(result);
     }
