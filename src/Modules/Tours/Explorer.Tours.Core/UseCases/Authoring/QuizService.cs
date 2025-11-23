@@ -29,6 +29,7 @@ public class QuizService : IQuizService
     {
         quizDto.AuthorId = authorId;
         quizDto.CreatedAt = DateTime.UtcNow;
+        ValidateQuizDto(quizDto);
         EnsureIdentifiers(quizDto);
 
         var quiz = _mapper.Map<DomainQuiz>(quizDto);
@@ -45,6 +46,7 @@ public class QuizService : IQuizService
         quizDto.AuthorId = authorId;
         quizDto.CreatedAt = existing.CreatedAt;
         quizDto.UpdatedAt = DateTime.UtcNow;
+        ValidateQuizDto(quizDto);
         EnsureIdentifiers(quizDto);
 
         var updated = _mapper.Map<DomainQuiz>(quizDto);
@@ -103,6 +105,30 @@ public class QuizService : IQuizService
             Questions = questionResults
         };
     }
+
+        private static void ValidateQuizDto(QuizDto quizDto)
+    {
+        if (string.IsNullOrWhiteSpace(quizDto.Title)) throw new ArgumentException("Invalid Title.");
+
+        foreach (var question in quizDto.Questions ?? new List<QuizQuestionDto>())
+        {
+            if (string.IsNullOrWhiteSpace(question.Text)) throw new ArgumentException("Invalid Question Text.");
+            if (question.Options == null || question.Options.Count == 0)
+                throw new ArgumentException("Question must contain answer options.");
+
+            var correctCount = question.Options.Count(o => o.IsCorrect);
+            if (correctCount == 0) throw new ArgumentException("Question must contain at least one correct answer.");
+            if (!question.AllowsMultipleAnswers && correctCount != 1)
+                throw new ArgumentException("Single-choice question must have exactly one correct answer.");
+
+            foreach (var option in question.Options)
+            {
+                if (string.IsNullOrWhiteSpace(option.Text)) throw new ArgumentException("Invalid Option Text.");
+                if (string.IsNullOrWhiteSpace(option.Feedback)) throw new ArgumentException("Invalid Feedback.");
+            }
+        }
+    }
+
 
     private static void EnsureIdentifiers(QuizDto quizDto)
     {

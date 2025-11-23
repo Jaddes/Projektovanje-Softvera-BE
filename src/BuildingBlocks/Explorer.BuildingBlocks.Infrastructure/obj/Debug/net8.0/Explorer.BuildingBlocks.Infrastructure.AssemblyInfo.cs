@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Explorer.BuildingBlocks.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a2cacd48e7b768d228b5fcbb7bd9178dc8e837f5")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+59df4ed5181f593d9a5625331be1177dc884f2ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("Explorer.BuildingBlocks.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Explorer.BuildingBlocks.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

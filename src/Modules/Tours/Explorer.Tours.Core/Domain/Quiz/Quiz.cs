@@ -5,7 +5,7 @@ namespace Explorer.Tours.Core.Domain.Quiz;
 public class Quiz : Entity
 {
     public long AuthorId { get; private set; }
-    public string Title { get; private set; }
+    public string Title { get; private set; } = string.Empty;
     public string? Description { get; private set; }
     public DateTime CreatedAt { get; private set; }
     public DateTime? UpdatedAt { get; private set; }
@@ -28,6 +28,7 @@ public class Quiz : Entity
 
     private Quiz()
     {
+        Title = string.Empty;
         Questions = new List<QuizQuestion>();
     }
 
