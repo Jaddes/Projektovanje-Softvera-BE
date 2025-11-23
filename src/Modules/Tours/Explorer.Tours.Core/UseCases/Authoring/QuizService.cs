@@ -31,7 +31,7 @@ public class QuizService : IQuizService
         quizDto.CreatedAt = DateTime.UtcNow;
         EnsureIdentifiers(quizDto);
 
-        var quiz = _mapper.Map<Quiz>(quizDto);
+        var quiz = _mapper.Map<DomainQuiz>(quizDto);
         var created = _repository.Create(quiz);
         return _mapper.Map<QuizDto>(created);
     }
@@ -39,7 +39,8 @@ public class QuizService : IQuizService
     public QuizDto Update(QuizDto quizDto, long authorId)
     {
         var existing = _repository.GetWithDetails(quizDto.Id);
-        if (existing.AuthorId != authorId) throw new NotFoundException("Quiz not found.");
+        if (existing == null || existing.AuthorId != authorId) throw new NotFoundException("Quiz not found.");
+
 
         quizDto.AuthorId = authorId;
         quizDto.CreatedAt = existing.CreatedAt;
@@ -54,7 +55,9 @@ public class QuizService : IQuizService
     public void Delete(long quizId, long authorId)
     {
         var existing = _repository.GetById(quizId);
-        if (existing == null || existing.AuthorId != authorId) throw new NotFoundException("Quiz not found.");
+        if (existing is null) throw new NotFoundException("Quiz not found.");
+        if (existing.AuthorId != authorId) throw new NotFoundException("Quiz not found.");
+
 
         _repository.Delete(quizId);
     }
